@@ -15,10 +15,10 @@ public class PatrocinadorService {
     }
 
     public List<Patrocinador> listarPatrocinadores(){
-        return  patrocinadorRepository.findAll();
+        return  this.patrocinadorRepository.findAll();
     }
 
     public Patrocinador listarPatrocinadorPorId(int idPatrocinador){
-        return patrocinadorRepository.findById(idPatrocinador).orElse(null);
+        return this.patrocinadorRepository.findById(idPatrocinador).orElse(null);
     }
 }

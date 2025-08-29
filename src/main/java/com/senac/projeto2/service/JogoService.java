@@ -15,10 +15,10 @@ public class JogoService {
     }
 
     public List<Jogo> listarJogos(){
-        return jogoRepository.findAll();
+        return this.jogoRepository.findAll();
     }
 
     public Jogo listarJogoPorId(int idJogo){
-        return jogoRepository.findById(idJogo).orElse(null);
+        return this.jogoRepository.findById(idJogo).orElse(null);
     }
 }

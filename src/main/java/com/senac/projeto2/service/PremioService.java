@@ -15,10 +15,10 @@ public class PremioService {
     }
 
     public List<Premio> listarPremios(){
-        return premioRepository.findAll();
+        return this.premioRepository.findAll();
     }
 
     public Premio listarPremioPorId(int idPremio){
-        return premioRepository.findById(idPremio).orElse(null);
+        return this.premioRepository.findById(idPremio).orElse(null);
     }
 }

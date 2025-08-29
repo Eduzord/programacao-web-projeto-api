@@ -15,11 +15,11 @@ public class ParticipanteService {
     }
 
     public List<Participante> listarParticipantes(){
-        return participanteRepository.findAll();
+        return this.participanteRepository.findAll();
     }
 
     public Participante listarParticipantePorId(int idParticipante){
-        return participanteRepository.findById(idParticipante).orElse(null);
+        return this.participanteRepository.findById(idParticipante).orElse(null);
     }
 
 }

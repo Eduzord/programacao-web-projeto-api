@@ -16,11 +16,11 @@ public class InscricaoService {
     }
 
     public List<Inscricao> listarInscricoes(){
-        return inscricaoRepository.findAll();
+        return this.inscricaoRepository.findAll();
     }
 
     public Inscricao listarInscricaoPorId(int idInscricao){
-        return inscricaoRepository.findById(idInscricao).orElse(null);
+        return this.inscricaoRepository.findById(idInscricao).orElse(null);
     }
 
 }

@@ -15,11 +15,11 @@ public class CategoriaService {
     }
 
     public List<Categoria> listarCategorias(){
-        return categoriaRepository.findAll();
+        return this.categoriaRepository.findAll();
     }
 
     public Categoria listarCategoriaPorId(int idCategoria){
-        return categoriaRepository.findById(idCategoria).orElse(null);
+        return this.categoriaRepository.findById(idCategoria).orElse(null);
     }
 
 }
