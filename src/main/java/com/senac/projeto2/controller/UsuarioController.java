@@ -49,10 +49,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.salvar(usuarioDtoRequest));
     }
 
-    @PutMapping("/atualizar")
-    @Operation(summary = "Atualiza todos os parametros de um usuário do sistema.")
-    public String atualizar(){
-        return "Usuario atualizado com sucesso!";
+    @PutMapping("/atualizar/{idUsuario}")
+    @Operation(summary = "Atualiza todos os parametros de um usuário.")
+    public ResponseEntity<UsuarioDtoResponse> atualizar(
+            @Valid @PathVariable("idUsuario") Integer idUsuario,
+            @RequestBody UsuarioDtoRequest usuarioDtoRequest){
+        return ResponseEntity.ok(usuarioService.atualizar(idUsuario,usuarioDtoRequest));
     }
 
     @PatchMapping("/atualizarParametro")
@@ -63,8 +65,8 @@ public class UsuarioController {
 
     @DeleteMapping("/apagar/{idUsuario}")
     @Operation(summary = "Deleta um usuário do sistema pelo id.")
-    public ResponseEntity apagar(@PathVariable("idUsuario") Integer idUsuario){
-        usuarioService.deletarUsuarioPorId(idUsuario);
+    public ResponseEntity<UsuarioDtoResponse> apagar(@PathVariable("idUsuario") Integer idUsuario){
+        usuarioService.apagar(idUsuario);
         return ResponseEntity.noContent().build();
     }
 

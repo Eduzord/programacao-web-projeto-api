@@ -24,11 +24,11 @@ public class UsuarioService {
     }
 
     public List<Usuario> listarUsuarios(){
-        return this.usuarioRepository.findAll();
+        return this.usuarioRepository.listarUsuariosAtivos();
     }
 
-    public Usuario listarUsuarioPorId(int idUsuario){
-        return this.usuarioRepository.findById(idUsuario).orElse(null);
+    public Usuario listarUsuarioPorId(Integer idUsuario){
+        return this.usuarioRepository.obterUsuarioAtivoPorId(idUsuario);
     }
 
     public UsuarioDtoResponse salvar(UsuarioDtoRequest usuarioDtoRequest){
@@ -41,7 +41,26 @@ public class UsuarioService {
         return modelMapper.map(usuarioSalvo, UsuarioDtoResponse.class);
     }
 
-    public void deletarUsuarioPorId(int idUsuario){
-        usuarioRepository.deleteById(idUsuario);
+    public UsuarioDtoResponse atualizar(Integer idUsuario, UsuarioDtoRequest usuarioDtoRequest){
+        Usuario usuario = this.listarUsuarioPorId(idUsuario);
+        if (usuario != null){
+            modelMapper.map(usuarioDtoRequest, usuario);
+            Usuario usuarioTemp = this.usuarioRepository.save(usuario);
+
+            return modelMapper.map(usuarioTemp,UsuarioDtoResponse.class);
+        }else{
+            return null;
+        }
+
+    }
+
+
+    public void apagar(Integer idUsuario){
+        Usuario usuario = listarUsuarioPorId(idUsuario);
+        if (usuario != null) {
+            this.usuarioRepository.apagadorLogico(idUsuario);
+        }else{
+            System.out.println("Id não existe no banco de dados.");
+        }
     }
 }
