@@ -1,11 +1,14 @@
 package com.senac.projeto2.controller;
 
+import com.senac.projeto2.dto.request.CategoriaDtoRequest;
+import com.senac.projeto2.dto.response.CategoriaDtoResponse;
 import com.senac.projeto2.dto.response.UsuarioDtoResponse;
 import com.senac.projeto2.entity.Categoria;
 import com.senac.projeto2.repository.CategoriaRepository;
 import com.senac.projeto2.service.CategoriaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +39,21 @@ public class CategoriaController {
         }else{
             return ResponseEntity.ok(categoria);
         }
+    }
+
+    @PostMapping("/criar")
+    @Operation(summary = "Cria uma nova categoria no sistema.")
+    public ResponseEntity<CategoriaDtoResponse> criar(@Valid @RequestBody CategoriaDtoRequest categoriaDtoRequest){
+
+        return  ResponseEntity.ok(categoriaService.salvar(categoriaDtoRequest));
+    }
+
+    @PutMapping("/atualizar/{idCategoria}")
+    @Operation(summary = "Atualiza todos os parametros de uma categoria.")
+    public ResponseEntity<CategoriaDtoResponse>atualizar(
+            @Valid @PathVariable("idCategoria") Integer idCategoria,
+            @RequestBody CategoriaDtoRequest categoriaDtoRequest){
+        return ResponseEntity.ok(categoriaService.atualizar(idCategoria, categoriaDtoRequest));
     }
 
     @DeleteMapping("/apagar/{idCategoria}")
