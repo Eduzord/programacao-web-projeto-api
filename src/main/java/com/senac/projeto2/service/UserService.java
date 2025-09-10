@@ -52,8 +52,12 @@ public class UserService {
         role.setName(createUserDto.role());
 
         User newUser = new User();
+        newUser.setNome(createUserDto.nome());
+        newUser.setCpf(createUserDto.cpf());
+        newUser.setDataNascimento(createUserDto.dataNascimento());
         newUser.setEmail(createUserDto.email());
         newUser.setPassword(securityConfiguration.passwordEncoder().encode(createUserDto.password()));
+        newUser.setStatus(1);
 
         newUser.setRoles(List.of(role));
 
