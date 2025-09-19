@@ -24,12 +24,17 @@ public class SecurityConfiguration {
             "/users/login", // Url que usaremos para fazer login
             "/users", // Url que usaremos para criar um usuário
             "/api/usuario/login",
-            "/api/usuario"
+            "/api/usuario",
+            "/api/index.html",
+            "/index.html",
+            "/api/jogo/atualizar/5"
+
     };
 
     // Endpoints que requerem autenticação para serem acessados
     public static final String [] ENDPOINTS_WITH_AUTHENTICATION_REQUIRED = {
-            "/users/test"
+            "/users/test",
+            "/api/jogo/atualizar/5"
     };
 
     // Endpoints que só podem ser acessador por usuários com permissão de cliente

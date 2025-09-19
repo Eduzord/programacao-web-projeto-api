@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface InscricaoRepository extends JpaRepository<Inscricao, Integer> {
 
-    @Query("SELECT i FROM Categoria i WHERE i.status >=0")
+    @Query("SELECT i FROM Inscricao i WHERE i.status >=0")
     List<Inscricao> listarInscricoesAtivas();
 
     @Query("SELECT i FROM Inscricao i WHERE i.id = :id AND i.status >=0")

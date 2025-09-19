@@ -10,23 +10,23 @@ import java.time.LocalDateTime;
 public class InscricaoDtoRequest {
 
     @NotBlank(message = "A data é obrigatória")
-    private LocalDate data;
+    private LocalDateTime data;
 
     @NotBlank(message = "É obrigatório um participante.")
-    private int participanteId;
+    private Integer participanteId;
 
     @NotBlank(message = "É obrigatório um jogo.")
-    private int jogoId;
+    private Integer jogoId;
 
-    public LocalDate getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 
-    public int getParticipanteId() {
+    public Integer getParticipanteId() {
         return participanteId;
     }
 
@@ -34,7 +34,7 @@ public class InscricaoDtoRequest {
         this.participanteId = participanteId;
     }
 
-    public int getJogoId() {
+    public Integer getJogoId() {
         return jogoId;
     }
 
