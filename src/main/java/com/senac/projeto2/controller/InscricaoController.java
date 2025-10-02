@@ -1,6 +1,7 @@
 package com.senac.projeto2.controller;
 
 import com.senac.projeto2.dto.request.InscricaoDtoRequest;
+import com.senac.projeto2.dto.request.InscricaoDtoRequestUpdate;
 import com.senac.projeto2.dto.response.CategoriaDtoResponse;
 import com.senac.projeto2.dto.response.InscricaoDtoResponse;
 import com.senac.projeto2.entity.Inscricao;
@@ -51,8 +52,8 @@ public class InscricaoController {
     @Operation(summary = "Atualiza uma inscrição.")
     public ResponseEntity<InscricaoDtoResponse> atualizar(
             @Valid @PathVariable("idInscricao") Integer idInscricao,
-            @RequestBody InscricaoDtoRequest inscricaoDtoRequest){
-        return ResponseEntity.ok(inscricaoService.atualizar(idInscricao, inscricaoDtoRequest));
+            @RequestBody InscricaoDtoRequestUpdate inscricaoDtoRequestUpdate){
+        return ResponseEntity.ok(inscricaoService.atualizar(idInscricao, inscricaoDtoRequestUpdate));
     }
 
     @DeleteMapping("/apagar/{idInscricao}")
