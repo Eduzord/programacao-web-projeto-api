@@ -27,7 +27,7 @@ public class Usuario {
     private int status;
 
     @Column(name = "usuario_login", unique = true)
-    private String email;
+    private String login;
 
     @Column(name = "usuario_senha")
     private String password;
@@ -79,12 +79,12 @@ public class Usuario {
         this.status = status;
     }
 
-    public String getEmail() {
-        return email;
+    public String getLogin() {
+        return login;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {

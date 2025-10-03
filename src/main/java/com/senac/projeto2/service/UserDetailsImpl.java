@@ -40,7 +40,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return user.getLogin();
     } // Retorna o nome de usuário do usuário que criamos anteriormente
 
     @Override

@@ -26,5 +26,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
     @Query("UPDATE Usuario u SET u.status = -1 WHERE u.id = :id")
     int apagadorLogico(@Param("id") int id);
 
-    Optional<Usuario> findByEmail(String email);
+    Optional<Usuario> findByLogin(String email);
 }

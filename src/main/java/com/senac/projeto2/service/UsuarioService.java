@@ -2,8 +2,8 @@ package com.senac.projeto2.service;
 
 import com.senac.projeto2.config.SecurityConfiguration;
 import com.senac.projeto2.dto.CreateUserDto;
-import com.senac.projeto2.dto.LoginUserDto;
-import com.senac.projeto2.dto.RecoveryJwtTokenDto;
+import com.senac.projeto2.dto.request.LoginUserDto;
+import com.senac.projeto2.dto.response.RecoveryJwtTokenDto;
 import com.senac.projeto2.dto.request.UsuarioDtoRequest;
 import com.senac.projeto2.dto.response.UsuarioDtoResponse;
 import com.senac.projeto2.entity.Role;
@@ -19,7 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -91,7 +90,7 @@ public class UsuarioService {
     public RecoveryJwtTokenDto authenticateUser(LoginUserDto loginUserDto) {
         // Cria um objeto de autenticação com o email e a senha do usuário
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
-                new UsernamePasswordAuthenticationToken(loginUserDto.email(), loginUserDto.password());
+                new UsernamePasswordAuthenticationToken(loginUserDto.login(), loginUserDto.password());
 
         // Autentica o usuário com as credenciais fornecidas
         Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
