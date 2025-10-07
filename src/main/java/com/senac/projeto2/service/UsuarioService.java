@@ -9,6 +9,7 @@ import com.senac.projeto2.dto.response.UsuarioDtoResponse;
 import com.senac.projeto2.entity.Role;
 import com.senac.projeto2.entity.User;
 import com.senac.projeto2.entity.Usuario;
+import com.senac.projeto2.repository.RoleRepository;
 import com.senac.projeto2.repository.UserRepository;
 import com.senac.projeto2.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -38,6 +39,10 @@ public class UsuarioService {
     @Autowired
     private SecurityConfiguration securityConfiguration;
 
+    @Autowired
+    private RoleRepository roleRepository;
+
+
 
     private final UsuarioRepository usuarioRepository;
 
@@ -55,8 +60,21 @@ public class UsuarioService {
 
     public UsuarioDtoResponse salvar(UsuarioDtoRequest usuarioDtoRequest){
         //Preciso passar os valores do objeto usuarioDto para o usuario
-        Usuario usuario = modelMapper.map(usuarioDtoRequest, Usuario.class);
+//        Role role = new Role();
+//        role.setName(usuarioDtoRequest.getRoleName());
+        final String ROLE_PADRAO = "ROLE_CUSTOMER";
+
+        Role role = roleRepository.findByRoleName(ROLE_PADRAO).orElseThrow(() -> new RuntimeException("Role '"+ ROLE_PADRAO + "' não encontrada"))
+
+        Usuario usuario = new Usuario();
+        usuario.setRoles(role);
+        usuario.setNome(usuarioDtoRequest.getNome());
+        usuario.setCpf(usuarioDtoRequest.getCpf());
+        usuario.setLogin(usuarioDtoRequest.getLogin());
+        usuario.setPassword(securityConfiguration.passwordEncoder().encode(usuarioDtoRequest.getSenha()));
+        usuario.setDataNascimento(usuarioDtoRequest.getDataNascimento());
         usuario.setStatus(1);
+        usuario.setRoles(List.of(role));
 
         Usuario usuarioSalvo = this.usuarioRepository.save(usuario);
 
