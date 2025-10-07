@@ -27,12 +27,12 @@ public class Usuario {
     private int status;
 
     @Column(name = "usuario_login", unique = true)
-    private String login;
+    private String email;
 
     @Column(name = "usuario_senha")
-    private String password;
+    private String senha;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name="usuario_role",
             joinColumns = @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name="role_id"))
@@ -79,20 +79,20 @@ public class Usuario {
         this.status = status;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public List<Role> getRoles() {

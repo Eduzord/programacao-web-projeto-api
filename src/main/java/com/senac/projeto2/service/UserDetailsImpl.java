@@ -35,12 +35,12 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return user.getSenha();
     } // Retorna a credencial do usuário que criamos anteriormente
 
     @Override
     public String getUsername() {
-        return user.getLogin();
+        return user.getEmail();
     } // Retorna o nome de usuário do usuário que criamos anteriormente
 
     @Override
